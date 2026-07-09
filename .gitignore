@@ -12,6 +12,9 @@ __pycache__/
 # Logs
 logs/*.log
 
+# Archivos temporales
+temp.mp3
+
 # Archivos del sistema
 .DS_Store
 Thumbs.db

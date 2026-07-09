@@ -1,3 +1,17 @@
 {
-    "username": "morris_got"
+    "username": "morris_got",
+
+    "tts": {
+        "enabled": true,
+        "voice": "es-CO-GonzaloNeural",
+        "rate": "-20%",
+        "volume": "+0%"
+    },
+
+    "filters": {
+        "ignore_emojis": true,
+        "ignore_symbols": true,
+        "ignore_repeated": true,
+        "max_length": 200
+    }
 }

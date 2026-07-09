@@ -1,6 +1,9 @@
+import asyncio
 from TikTokLive import TikTokLiveClient
 from TikTokLive.events import ConnectEvent, CommentEvent
 from TikTokLive.client.errors import UserOfflineError
+from core.filter import CommentFilter
+from core.queue import CommentQueue
 from core.tts import TTS
 
 
@@ -11,6 +14,8 @@ class LiveClient:
         self.client = TikTokLiveClient(unique_id=username)
 
         self.tts = TTS()
+        self.comment_queue = CommentQueue(self.tts)
+        self.comment_filter = CommentFilter()
 
         # Registrar eventos
         self.client.on(ConnectEvent, self.on_connect)
@@ -35,8 +40,13 @@ class LiveClient:
     async def on_connect(self, event: ConnectEvent):
         print("🟢 EchoLive conectado correctamente al LIVE.")
         print(f"Room ID: {event.room_id}")
+        asyncio.create_task(self.comment_queue.worker())
 
     async def on_comment(self, event: CommentEvent):
         print(f"\n💬 {event.user.nickname}")
         print(f"   {event.comment}")
-        await self.tts.speak(event.comment)
+
+        if self.comment_filter.is_valid(event.comment):
+            await self.comment_queue.add(event.comment)
+        else:
+            print("🚫 Comentario filtrado.")

@@ -1,14 +1,12 @@
-import json
-
 from core.live import LiveClient
+from core.config import Config
 
 
 def main():
 
-    with open("config/config.json", "r", encoding="utf-8") as file:
-        config = json.load(file)
+    config = Config()
 
-    username = config["username"]
+    username = config.get("username")
 
     live = LiveClient(username)
 
