@@ -1,6 +1,7 @@
 from TikTokLive import TikTokLiveClient
 from TikTokLive.events import ConnectEvent, CommentEvent
 from TikTokLive.client.errors import UserOfflineError
+from core.tts import TTS
 
 
 class LiveClient:
@@ -8,6 +9,8 @@ class LiveClient:
     def __init__(self, username: str):
         self.username = username
         self.client = TikTokLiveClient(unique_id=username)
+
+        self.tts = TTS()
 
         # Registrar eventos
         self.client.on(ConnectEvent, self.on_connect)
@@ -36,3 +39,4 @@ class LiveClient:
     async def on_comment(self, event: CommentEvent):
         print(f"\n💬 {event.user.nickname}")
         print(f"   {event.comment}")
+        await self.tts.speak(event.comment)
