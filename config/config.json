@@ -3,7 +3,7 @@
 
     "tts": {
         "enabled": true,
-        "voice": "es-CO-GonzaloNeural",
+        "voice": "es-MX-JorgeNeural",
         "rate": "-20%",
         "volume": "+0%"
     },
