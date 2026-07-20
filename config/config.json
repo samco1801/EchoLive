@@ -1,13 +1,11 @@
 {
     "username": "morris_got",
-
     "tts": {
         "enabled": true,
         "voice": "es-MX-JorgeNeural",
-        "rate": "-20%",
-        "volume": "+0%"
+        "rate": "+38%",
+        "volume": "+50%"
     },
-
     "filters": {
         "ignore_emojis": true,
         "ignore_symbols": true,

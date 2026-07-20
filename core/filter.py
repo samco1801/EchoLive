@@ -42,3 +42,20 @@ class CommentFilter:
                 return False
 
         return True
+
+    def update_settings(self, ignore_emojis=None, ignore_symbols=None,
+                         ignore_repeated=None, max_length=None):
+        """Permite aplicar cambios de filtros hechos en la ventana de
+        Configuración sin reiniciar la app."""
+
+        if ignore_emojis is not None:
+            self.ignore_emojis = ignore_emojis
+
+        if ignore_symbols is not None:
+            self.ignore_symbols = ignore_symbols
+
+        if ignore_repeated is not None:
+            self.ignore_repeated = ignore_repeated
+
+        if max_length is not None:
+            self.max_length = max_length
